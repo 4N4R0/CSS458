@@ -43,7 +43,13 @@ def reflectingLat(lat):
     return extended_lat
 
 def applyDiffusionExtended(diffusionRate, bar):
-    
+    internal_lat = []
+    r = bar[1:-2]
+    c = bar[1:-2]
+    for r, c in bar:
+        #N, NE, E, SE, S, SW, W, NW
+        internal_lat[r, c] = diffusion(diffusionRate, bar[r,c], bar[r-1,c], bar[r-1,c+1], bar[r,c+1], bar[r-1,c+1], \
+                                       bar[r+1,c], bar[r+1,c-1], bar[r,c-1], bar[r-1,c-1])
 
 def diffusionSim(m, n, diffusionRate, t):
     bar = initBar(m, n, )
