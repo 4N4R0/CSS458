@@ -10,15 +10,13 @@ def diffusion(diffusionRate, site, N, NE, E, SE, S, SW, W, NW):
     return(1-8*diffusionRate)*site + diffusionRate*(N + NE + E +  SE + S + SW + W + NW)
 
 def initBar(m, n, hotSites, coldSites):
-    ambientBar = [[AMBIENT for _ in range(n)] for _ in range(m)]
-    for r, c in hotSites:
-        ambientBar[r][c] = HOT
-    for r, c in coldSites:
-        ambientBar[r][c] = COLD
+    ambientBar = numpy.zeros((m,n))
+    applyHotCold(ambientBar, hotSites, coldSites)
 
     return ambientBar
 
 def applyHotCold(bar, hotSites, coldSites):
+    #Will change this code to replace HOT in bar if r,c in hotSites is TRUE
     for r, c in hotSites:
         bar[r][c] = HOT
     for r, c in coldSites:
